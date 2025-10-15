@@ -3,13 +3,16 @@ info:
   title: RX GLITCH API
   version: 1.0.0
   description: >
-    RX GLITCH predicts payer denials before they happen.
+    RX GLITCH predicts payer denials before they happen.  
     It analyzes CPT × ICD logic, documentation requirements, and payer drift.
+
 servers:
   - url: https://api.rxglitch.com/v1
     description: Production (inside client VPC)
   - url: https://sandbox.rxglitch.com/v1
     description: Sandbox testing environment
+  - url: https://mock.rxglitch.io/v1
+    description: Mock testing environment
 
 paths:
   /claim-check:
@@ -66,17 +69,18 @@ paths:
                     example:
                       - "ACME-ECG-2025-10-01"
                       - "CMS-LCD-L12345"
+              example:
+                risk: 0.82
+                status: "likely_denial"
+                reasons:
+                  - "ICD10 I10 not sufficient for CPT 93000 per ACME policy 2025-10-01"
+                  - "Missing documentation: resting ECG interpretation note"
+                policy_refs:
+                  - "ACME-ECG-2025-10-01"
+                  - "CMS-LCD-L12345"
         '400':
           description: Bad Request - missing or invalid field
         '401':
           description: Unauthorized - invalid API key
         '500':
           description: Internal server error
-components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-security:
-  - ApiKeyAuth: []
