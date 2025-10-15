@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: RX GLITCH API
+  version: 1.0.0
+  description: >
+    RX GLITCH predicts payer denials before they happen.
+    It analyzes CPT × ICD logic, documentation requirements, and payer drift.
+servers:
+  - url: https://api.rxglitch.com/v1
+    description: Production (inside client VPC)
+  - url: https://sandbox.rxglitch.com/v1
+    description: Sandbox testing environment
+
+paths:
+  /claim-check:
+    post:
+      summary: Predicts denial risk for a single claim
+      operationId: claimCheck
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cpt:
+                  type: string
+                  example: "93000"
+                icd10:
+                  type: array
+                  items:
+                    type: string
+                  example: ["I10"]
+                plan_id:
+                  type: string
+                  example: "PAYER-ACME-123"
+                dob:
+                  type: string
+                  format: date
+                  example: "1980-04-12"
+      responses:
+        '200':
+          description: Risk evaluation successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  risk:
+                    type: number
+                    example: 0.82
+                  status:
+                    type: string
+                    example: likely_denial
+                  reasons:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - "ICD10 I10 not sufficient for CPT 93000 per ACME policy 2025-10-01"
+                      - "Missing documentation: resting ECG interpretation note"
+                  policy_refs:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - "ACME-ECG-2025-10-01"
+                      - "CMS-LCD-L12345"
+        '400':
+          description: Bad Request - missing or invalid field
+        '401':
+          description: Unauthorized - invalid API key
+        '500':
+          description: Internal server error
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+security:
+  - ApiKeyAuth: []
