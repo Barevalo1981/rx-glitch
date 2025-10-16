@@ -1,0 +1,18 @@
+field_name,type,required,example,notes
+patient_name,string,no,Jane Doe,Optional for v0; keep out of model
+sex,string,no,F,
+dob,date,yes,1980-01-01,ISO 8601
+dos,date,yes,2025-10-01,Date of service
+payor_code,string,yes,ACME-123,
+payor_name,string,no,Acme Health,
+group_number,string,no,GRP-789,
+subscriber_id,string,yes,ABC123456,not "subscriber number"
+plan_id,string,yes,PAYER-ACME-123,aligns with OpenAPI
+cpt,string or array,yes,93000,"if multiple, join with '|' for v0"
+icd10,string or array,yes,I10,"if multiple, join with '|' for v0"
+total_cpt,integer,no,1,"count of CPTs (derived); keep but not used in v0"
+total_diagnosis,integer,no,1,"count of DX (derived); keep but not used in v0"
+physician_npi,string,no,1234567890,
+physician_first_initial,string,no,J,
+physician_last_name,string,no,Smith,
+denial_category,string,no,not_medically_necessary,"label if known; optional for v0"
