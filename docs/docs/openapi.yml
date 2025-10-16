@@ -34,13 +34,60 @@ paths:
                   items:
                     type: string
                   example: ["I10"]
-                plan_id:
+                patient_name:
                   type: string
-                  example: "PAYER-ACME-123"
+                  example: "Jane Doe"
+                sex:
+                  type: string
+                  example: "F"
                 dob:
                   type: string
                   format: date
                   example: "1980-04-12"
+                date_of_service: 
+                  type: string
+                  format: date
+                  example: "2025-10-16"
+                payor_code:
+                  type: string
+                  example: "AET123"
+                payor_name:
+                  type: string
+                  example: "Aetna Health"
+                group_number:
+                  type: string
+                  example: "G456789"
+                subscriber_id:
+                  type: string
+                  example: "SUB123456"
+                total_cpt:
+                  type: array
+                  description: "All CPT codes included on the claim"
+                  items:
+                    type: string
+                  example: ["93000", "93010", "99214"]
+                 diagnosis_all:
+                    type: array
+                    description: "All ICD-10 codes included on the entire claim"
+                    items:
+                      type: string
+                      example: ["I10", "E11.9", "R07.9"]
+                 physician_npi:
+                    type: string
+                    example: "1234567890"
+                physician_first_initial:
+                    type: string
+                    example: "J"
+                physician_last_name:
+                    type: string
+                    example: "Smith"
+                denial_category:
+                    type: string
+                    example: "Medical Necessity / DX Code"
+                plan_id:
+                  type: string
+                  example: "PAYER-ACME-123"
+  
       responses:
         '200':
           description: Risk evaluation successful
