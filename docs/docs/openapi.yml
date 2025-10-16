@@ -33,7 +33,7 @@ paths:
                   type: array
                   items:
                     type: string
-                  example: ["I10"]
+                    example: ["I10"]
                 patient_name:
                   type: string
                   example: "Jane Doe"
