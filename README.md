@@ -29,6 +29,29 @@ and validates every claim *before* it’s sent.
 - Ephemeral cache < 60 s  
 - Full audit logging  
 
+---
+
+## 🚀 Quick Start (Smoke Test)
+
+### Run locally
+1. Install Python 3.10+  
+2. `pip install -r requirements.txt`  
+3. `python rx_glitch_engine.py`  
+   You should see:  
+   `Predicted denial risk: <number between 0 and 1>`
+
+### (Optional) Run in Codespaces
+1. Click **Code → Create codespace on main**  
+2. In the terminal:  
+   `pip install -r requirements.txt`  
+   `python rx_glitch_engine.py`
+
+### Files
+- `rx_glitch_engine.py` — v0.1 engine (mock scoring)  
+- `data_dictionary.csv` — field schema  
+- `docs/openapi.yml` — API contract (`/claim-check`)  
+- `example_claim.json` — sample payload
+
 ## 🧭 Roadmap
 | Quarter | Milestone | Status |
 |----------|------------|--------|
