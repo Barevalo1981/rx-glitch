@@ -66,7 +66,7 @@ paths:
                   items:
                     type: string
                   example: ["93000", "93010", "99214"]
-                 diagnosis_all:
+                diagnosis_all:
                     type: array
                     description: "All ICD-10 codes included on the entire claim"
                     items:
