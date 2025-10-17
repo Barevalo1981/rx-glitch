@@ -1,0 +1,14 @@
+# Ignore virtual environments and caches
+venv/
+venv311/
+__pycache__/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+.Python
+.idea/
+.vscode/
+.env
+.pytest_cache/
+*.log
