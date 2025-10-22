@@ -86,4 +86,15 @@ Real-time front-end intelligence for payment integrity.
 [rxglitch.com](https://rxglitch.com) • [github.com/Barevalo1981/rx-glitch](https://github.com/Barevalo1981/rx-glitch)
 
 ---
+
+## 📊 Live Metrics
+[![Policy updates log](https://img.shields.io/badge/Latest%20updates–see%20data-blue)](data/policy_updates_log.csv)
+
+* Most recent run: `2025-10-22T19:06:12Z`
+* Updates loaded: 5  
+* CPTs referenced: 2  
+* Claims impacted: 1  
+
+---
+
 *“Control the narrative. Control the numbers.” — RX GLITCH*
