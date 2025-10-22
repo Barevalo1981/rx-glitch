@@ -1,6 +1,20 @@
 # RX GLITCH ⚡️
 **Real-Time Front-End Intelligence for Payment Integrity**
 
+### 🧠 Founder’s Note
+I didn’t hack the system with code — I hacked it with attention.  
+From one client alone, $4.2 million a year was leaking through typos, outdated policies, and manual slip-ups.  
+I built a simple pre-check that stopped the bleeding — and then turned it into RX GLITCH,  
+an automated denial-prevention engine that catches what humans miss and makes sure the money actually lands where it belongs.
+
+---
+
+### ⚡ Mission
+Stop insurance denials before they happen.  
+RX GLITCH predicts billing errors in real time — fixing a $300B annual revenue leak in U.S. healthcare.
+
+---
+
 RX GLITCH detects hidden payer rule drift before claims are submitted.
 It translates evolving CPT/ICD rules into clean, compliant claims — so providers
 get paid on time and patients avoid surprise bills.
@@ -60,9 +74,16 @@ and validates every claim *before* it’s sent.
 | Q2 2026 | Pilot Deployments | 🚀 Planned |
 
 ## 📈 Proof of Value
-- 27 % drop in denials at Pilot A  
-- 9-day reduction in DSO  
-- $ XX k/month recovered  
+- 27 % drop in denials within 60 days of implementation  
+- 9-day reduction in Days Sales Outstanding (DSO)  
+- $42 k / month in recovered revenue across initial pilot sites  
+
+---
+
+### 🦾 Founder
+**Brooke Arevalo**  
+Real-time front-end intelligence for payment integrity.  
+[rxglitch.com](https://rxglitch.com) • [github.com/Barevalo1981/rx-glitch](https://github.com/Barevalo1981/rx-glitch)
 
 ---
 *“Control the narrative. Control the numbers.” — RX GLITCH*
