@@ -187,3 +187,24 @@ def predict_denial_risk(claim: dict) -> float:
     glitch_score = 100 if approved else 70
     denial_risk = max(0.0, min(1.0, 1 - glitch_score / 100.0))
     return denial_risk
+# --- Integrate normalized payer updates ---
+from pathlib import Path
+import pandas as pd
+
+UPDATES = Path("../rx-scrapers/normalized_updates.csv")
+
+def load_updates():
+    if not UPDATES.exists():
+        print("⚠️  No payer updates found yet.")
+        return pd.DataFrame(columns=["cpt","modifier","status"])
+    df = pd.read_csv(UPDATES)
+    print(f"✅ Loaded {len(df)} payer updates from normalized_updates.csv")
+    return df
+
+payer_updates = load_updates()
+
+# Example hook: flag claims affected by new payer rules
+if not payer_updates.empty:
+    affected = claims[claims["cpt_code"].isin(payer_updates["cpt"])]
+    print(f"🚨 {len(affected)} claims potentially affected by recent payer changes.")
+
