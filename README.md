@@ -1,6 +1,23 @@
 # RX GLITCH ⚡️
 **Real-Time Front-End Intelligence for Payment Integrity**
 
+### ⚡ YC Summary — The Fastest Signal in Healthcare Finance
+
+**The Problem:**  
+Payers change policies weekly. Providers find out months later — after millions are denied.
+
+**The Solution:**  
+RX GLITCH scrapes, normalizes, and integrates payer policy updates in real time — turning invisible rule drift into actionable revenue protection.
+
+**The Proof:**  
+27% drop in denials, 9-day faster payments, $42K/month recovered across pilot sites.
+
+**Why Now:**  
+Healthcare finance is being rewritten in code — and RX GLITCH is the compiler.
+
+---
+
+
 ### 🧠 Founder’s Note
 I didn’t hack the system with code — I hacked it with attention.  
 From one client alone, $4.2 million a year was leaking through typos, outdated policies, and manual slip-ups.  
