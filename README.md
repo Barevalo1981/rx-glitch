@@ -1,117 +1,104 @@
-# RX GLITCH ⚡️
+# RX GLITCH ⚡  
 **Real-Time Front-End Intelligence for Payment Integrity**
-
-### ⚡ YC Summary — The Fastest Signal in Healthcare Finance
-
-**The Problem:**  
-Payers change policies weekly. Providers find out months later — after millions are denied.
-
-**The Solution:**  
-RX GLITCH scrapes, normalizes, and integrates payer policy updates in real time — turning invisible rule drift into actionable revenue protection.
-
-**The Proof:**  
-27% drop in denials, 9-day faster payments, $42K/month recovered across pilot sites.
-
-**Why Now:**  
-Healthcare finance is being rewritten in code — and RX GLITCH is the compiler.
 
 ---
 
+### ⚡ YC Summary — The Fastest Signal in Healthcare Finance
+
+**Problem:**  
+Payers change billing policies weekly. Providers find out months later — after millions in claims are denied.
+
+**Solution:**  
+RX GLITCH scrapes, normalizes, and integrates payer policy updates in real time — turning hidden rule drift into actionable revenue protection.
+
+**Proof:**  
+27% drop in denials, 9-day faster payments, $42K/month recovered across pilot sites.
+
+**Why Now:**  
+Healthcare finance is being rewritten in code. RX GLITCH is the compiler.
+
+---
 
 ### 🧠 Founder’s Note
 I didn’t hack the system with code — I hacked it with attention.  
 From one client alone, $4.2 million a year was leaking through typos, outdated policies, and manual slip-ups.  
-I built a simple pre-check that stopped the bleeding — and then turned it into RX GLITCH,  
-an automated denial-prevention engine that catches what humans miss and makes sure the money actually lands where it belongs.
+
+So I built a pre-check that stopped the bleeding — and turned it into **RX GLITCH**:  
+an automated denial-prevention engine that catches what humans miss and ensures money lands where it belongs.
 
 ---
 
 ### ⚡ Mission
-Stop insurance denials before they happen.  
-RX GLITCH predicts billing errors in real time — fixing a $300B annual revenue leak in U.S. healthcare.
+Stop insurance denials *before* they happen.  
+RX GLITCH predicts billing errors in real time — fixing a **$300B annual revenue leak** in U.S. healthcare.  
+
+It detects hidden payer rule drift *before* claims are submitted, translating evolving CPT/ICD logic into compliant claims so providers get paid on time and patients avoid surprise bills.
 
 ---
 
-RX GLITCH detects hidden payer rule drift before claims are submitted.
-It translates evolving CPT/ICD rules into clean, compliant claims — so providers
-get paid on time and patients avoid surprise bills.
-
-## 💡 Problem
+### 💡 Problem
 Healthcare still runs on a 1970s computer language (EDI).  
-Each insurer speaks a slightly different dialect and changes the rules constantly.  
+Each insurer speaks a different dialect — and constantly rewrites the rules.  
 One mismatch = one denial.  
 Doctors lose revenue. Patients get chaos.
 
-## 🧠 Solution
-RX GLITCH continuously ingests payer policies, maps rule drift,
-and validates every claim *before* it’s sent.  
+---
+
+### 🧬 Solution
+RX GLITCH continuously ingests payer policies, maps rule drift, and validates every claim *before* it’s sent.  
 → Real-time accuracy. Zero denials. Predictable revenue.
 
-## ⚙️ Architecture (High-Level)
-- **Policy Parser:** reads PDFs, LCDs, and payer portals  
-- **Rules Engine:** normalizes CPT × ICD logic  
+---
+
+### 🛠 Architecture (High-Level)
+- **Policy Parser:** Reads PDFs, LCDs, and payer portals  
+- **Rules Engine:** Normalizes CPT × ICD logic  
 - **Claim-Check API:** `/claim-check` endpoint (FastAPI)  
-- **Drift Radar:** tracks policy evolution  
-- **Streamlit UI:** instant feedback for billers and coders  
-
-## 🔐 HIPAA-First Design
-- Local inference — the data stays, intelligence travels  
-- Minimal fields (CPT, DX, Plan ID, DOB)  
-- Ephemeral cache < 60 s  
-- Full audit logging  
+- **Drift Radar:** Tracks policy evolution  
+- **Streamlit UI:** Instant feedback for billers and coders  
 
 ---
 
-## 🚀 Quick Start (Smoke Test)
-
-### Run locally
-1. Install Python 3.10+  
-2. `pip install -r requirements.txt`  
-3. `python rx_glitch_engine.py`  
-   You should see:  
-   `Predicted denial risk: <number between 0 and 1>`
-
-### (Optional) Run in Codespaces
-1. Click **Code → Create codespace on main**  
-2. In the terminal:  
-   `pip install -r requirements.txt`  
-   `python rx_glitch_engine.py`
-
-### Files
-- `rx_glitch_engine.py` — v0.1 engine (mock scoring)  
-- `data_dictionary.csv` — field schema  
-- `docs/openapi.yml` — API contract (`/claim-check`)  
-- `example_claim.json` — sample payload
-
-## 🧭 Roadmap
-| Quarter | Milestone | Status |
-|----------|------------|--------|
-| Q4 2025 | Claim-Check v1 | 🔧 Building |
-| Q1 2026 | Drift Radar v1 | 🧪 Testing |
-| Q2 2026 | Pilot Deployments | 🚀 Planned |
-
-## 📈 Proof of Value
-- 27 % drop in denials within 60 days of implementation  
-- 9-day reduction in Days Sales Outstanding (DSO)  
-- $42 k / month in recovered revenue across initial pilot sites  
+### 🚀 Proof of Value
+- **27% drop** in denials within 60 days  
+- **9-day reduction** in Days Sales Outstanding (DSO)  
+- **$42K/month** in recovered revenue across initial pilot sites  
 
 ---
 
-### 🦾 Founder
-**Brooke Arevalo**  
+### 🧩 Tech Stack
+- **Python 3.14** · Pandas · BeautifulSoup · Streamlit  
+- Modular architecture for scrapers → normalizer → risk engine  
+- Deployable locally or to cloud with full audit logging  
+
+---
+
+### 🧮 Live Metrics
+- **Most recent run:** 2025-10-22T19:06:12Z  
+- **Updates loaded:** 5  
+- **CPTs referenced:** 2  
+- **Claims impacted:** 1  
+
+---
+
+### 🧠 Founder
+**Brooke Arevalo** — founder & architect  
 Real-time front-end intelligence for payment integrity.  
-[rxglitch.com](https://rxglitch.com) • [github.com/Barevalo1981/rx-glitch](https://github.com/Barevalo1981/rx-glitch)
+🌐 [rxglitch.com](https://rxglitch.com) · 💻 [github.com/Barevalo1981/rx-glitch](https://github.com/Barevalo1981/rx-glitch)
 
 ---
 
-## 📊 Live Metrics
-[![Policy updates log](https://img.shields.io/badge/Latest%20updates–see%20data-blue)](data/policy_updates_log.csv)
-
-* Most recent run: `2025-10-22T19:06:12Z`
-* Updates loaded: 5  
-* CPTs referenced: 2  
-* Claims impacted: 1  
+### 📍 Vision
+To build the **control tower for healthcare revenue** — where every payer change is instantly visible, actionable, and monetized.
 
 ---
+
+### 🖋️ How to Run
+```bash
+git clone https://github.com/Barevalo1981/rx-glitch.git
+cd rx-glitch
+pip install -r requirements.txt
+streamlit run app.py
+
 
 *“Control the narrative. Control the numbers.” — RX GLITCH*
