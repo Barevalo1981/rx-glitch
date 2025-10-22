@@ -1,0 +1,16 @@
+code,reason,trigger_pattern,prevention_tip,denial_category
+CO-4,Missing or invalid modifier,CPT missing modifier or mismatch with procedure,Verify modifier pairs (e.g., 91 for repeat, 59 for distinct).,Coding
+CO-11,Diagnosis-procedure mismatch,CPT–ICD cluster mismatch,Ensure CPT aligns with correct ICD cluster.,Coding
+CO-15,Invalid or missing authorization,auth_number empty or invalid,Confirm prior authorization, correct block 23.,Authorization
+CO-16,Missing information or demographic errors,Null fields, wrong CLIA, missing DOB,Validate all required claim fields before submit.,Documentation
+CO-18,Duplicate claim,Claim ID + DOS already exists,Check status before resubmission.,Process
+CO-29,Timely filing limit exceeded,DOS > plan filing window,Verify payer filing limit (e.g., 90 days).,Timely Filing
+CO-97,Non-covered / bundled service,CPT flagged 'bundled' or excluded,Verify coverage before rendering; appeal if needed.,Coverage
+CO-222,Exceeded units/hours,Units > payer max,Verify utilization limits per payer policy.,Utilization
+CO-45,Charge exceeds fee schedule,Billed > allowed amount,Validate charge master and fee schedules.,Financial
+CO-167,Service not covered,CPT not in payer coverage table,Confirm benefit coverage; adjust or bill patient.,Coverage
+CO-109,Claim not covered by this payer,Payer ID mismatch or incorrect plan,Verify payer eligibility and coverage before submission.,Eligibility
+CO-204,Service not covered under patient plan,CPT not authorized under benefit rules,Confirm benefit design before rendering; update patient financial consent.,Coverage
+CO-208,NPI or taxonomy errors,Rendering or billing provider NPI invalid,Validate NPI and taxonomy codes in claim header.,Documentation
+CO-252,Missing or invalid claim form data,Missing required CMS-1500 field,Use claim scrubbing to flag incomplete fields pre-submission.,Documentation
+CO-259,Missing referring provider,referring_provider_id empty,Verify referring provider info before submission.,Documentation

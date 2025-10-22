@@ -1,4 +1,11 @@
 code,description
-99213,Office/outpatient visit, established patient
-93000,Electrocardiogram, complete
-87086,Culture, bacterial; urine
+99213,Office or other outpatient visit for an established patient (low to moderate complexity)
+99214,Office or other outpatient visit for an established patient (moderate complexity)
+93000,Electrocardiogram
+71046,Radiologic examination
+80050,General health panel (includes complete metabolic panel
+36415,Collection of venous blood by venipuncture
+87086,Culture
+81001,Urinalysis
+90471,Immunization administration
+90686,Influenza virus vaccine

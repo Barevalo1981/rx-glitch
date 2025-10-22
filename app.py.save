@@ -1,0 +1,135 @@
+# app.py — RX GLITCH ⚡ Claim Check (real payer names)
+
+import json
+import pandas as pd
+import streamlit as st
+from pathlib import Path
+from rx_glitch_engine import predict_denial_risk
+st.set_page_config(page_title="RX GLITCH — Claim Check", layout="centered")
+
+st.title("RX GLITCH ⚡ Claim Check")
+st.caption("Real-time front-end intelligence for payment integrity")
+
+ROOT = Path(__file__).resolve().parent
+DATA = ROOT / "data"
+
+@st.cache_data
+def read_csv_safe(filename: str) -> pd.DataFrame:
+    path = DATA / filename
+    if not path.exists():
+        st.error(f"⚠️ Missing data file: {path}")
+        st.stop()
+    try:
+        return pd.read_csv(path, usecols=[0, 1], dtype=str, engine="python", on_bad_lines="skip")
+    except Exception as e:
+        st.warning(f"⚠️ Could not read {path}: {e}")
+        return pd.DataFrame(columns=["code", "description"])
+
+# ---------- Paths & CSV loaders ----------
+ROOT = Path(__file__).resolve().parent
+DATA = ROOT / "data"
+
+@st.cache_data
+def read_csv_safe(filename: str) -> pd.DataFrame:
+    path = DATA / filename
+    if not path.exists():
+        st.error(f"⚠️ Missing data file: {path}")
+        st.stop()
+    try:
+        return pd.read_csv(path)
+    except Exception as e:
+        st.error(f"⚠️ Could not read {path}: {e}")
+        st.stop()
+
+# Load reference data once
+payers_df = read_csv_safe("payers.csv")
+cpt_df    = read_csv_safe("cpt_codes.csv")
+icd10_df  = read_csv_safe("icd10_codes.csv")
+
+# ---------- Infer payer columns gracefully ----------
+def pick_column(df: pd.DataFrame, candidates: list[str]):
+    cols_lower = {c.lower(): c for c in df.columns}
+    for cand in candidates:
+        if cand.lower() in cols_lower:
+            return cols_lower[cand.lower()]
+    return None
+
+# Try to find sensible columns in payers.csv
+COL_PAYER_NAME = pick_column(payers_df, ["payer_name", "name", "payer", "plan_name", "organization"])
+COL_PLAN_ID    = pick_column(payers_df, ["plan_id", "payer_id", "id", "plan_code", "planid"])
+COL_STATE      = pick_column(payers_df, ["state", "state_code", "st"])
+COL_NETWORK    = pick_column(payers_df, ["network", "product", "plan_type"])
+
+# Build display options like: "UnitedHealthcare — PPO — (PLN-123) — CA"
+def build_payer_label(row) -> str:
+    parts = []
+    if COL_PAYER_NAME: parts.append(str(row[COL_PAYER_NAME]))
+    if COL_NETWORK and not pd.isna(row[COL_NETWORK]): parts.append(str(row[COL_NETWORK]))
+    if COL_PLAN_ID and not pd.isna(row[COL_PLAN_ID]): parts.append(f"({row[COL_PLAN_ID]})")
+    if COL_STATE and not pd.isna(row[COL_STATE]): parts.append(str(row[COL_STATE]))
+    return " — ".join(parts) if parts else "Unknown Payer"
+
+# Prepare selectbox data
+payers_df = payers_df.fillna("")
+payer_options = [build_payer_label(r) for _, r in payers_df.iterrows()]
+
+# Map label -> identifiers we’ll send to the engine
+label_to_payload = {}
+for idx, (_, r) in enumerate(payers_df.iterrows()):
+    label = payer_options[idx]
+    payload = {
+        "payer_name": str(r[COL_PAYER_NAME]) if COL_PAYER_NAME else "",
+        "plan_id": str(r[COL_PLAN_ID]) if COL_PLAN_ID else "",
+        "state": str(r[COL_STATE]) if COL_STATE else "",
+        "network": str(r[COL_NETWORK]) if COL_NETWORK else "",
+    }
+    label_to_payload[label] = payload
+
+# ---------- UI ----------
+st.set_page_config(page_title="RX GLITCH — Claim Check", layout="centered")
+st.title("RX GLITCH ⚡ Claim Check")
+st.caption("Real-time front-end intelligence for payment integrity")
+
+with st.form("claim_form"):
+    # CPT input
+    cpt_default = "93000" if "code" in {c.lower() for c in cpt_df.columns} else ""
+    cpt = st.text_input("CPT", cpt_default)
+
+    # ICD-10 input
+    icd10_default = "I10" if "code" in {c.lower() for c in icd10_df.columns} else ""
+    icd10_text = st.text_input("ICD-10 (comma separated)", icd10_default)
+
+    # Real payer selection (with manual fallback)
+    st.markdown("**Payer / Plan**")
+    mode = st.radio("Input mode", ["Select from list", "Type manually"], horizontal=True, label_visibility="collapsed")
+
+    if mode == "Select from list" and payer_options:
+        chosen_label = st.selectbox("Select Payer / Plan", payer_options, index=0)
+        chosen_payer = label_to_payload[chosen_label]
+        # Show a little context so it feels real
+        with st.expander("Selected payer details"):
+            st.write(chosen_payer)
+        # Prefer plan_id if present, otherwise payer_name
+        plan_id = chosen_payer["plan_id"] or chosen_payer["payer_name"]
+    else:
+        plan_id = st.text_input("Enter Payer / Plan ID", "")
+
+    dob = st.text_input("DOB (YYYY-MM-DD)", "1980-01-01")
+    submitted = st.form_submit_button("Predict Denial Risk")
+
+# ---------- Submit ----------
+if submitted:
+    claim = {
+        "cpt": cpt.strip(),
+        "icd10": [x.strip() for x in icd10_text.split(",") if x.strip()],
+        "plan_id": plan_id.strip(),
+        "dob": dob.strip()
+    }
+
+    try:
+        score = predict_denial_risk(claim)
+        st.success(f"Predicted denial risk: **{score:.2f}**")
+        st.subheader("Submitted Claim")
+        st.json(claim)
+    except Exception as e:
+        st.error(f"Error: {e}")

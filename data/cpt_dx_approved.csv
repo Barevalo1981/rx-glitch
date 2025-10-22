@@ -1,0 +1,11 @@
+cpt_code,icd10_code,description,approval_reason
+80050,Z00.00,General health panel,Annual preventive exam
+36415,E11.9,Blood draw for diabetes follow-up,Chronic condition monitoring
+71046,J18.9,Chest X-ray for pneumonia,Pulmonary diagnosis alignment
+87086,N39.0,Urine culture for UTI,Symptomatic urinary tract infection
+81001,N39.0,Urinalysis for UTI,Diagnostic match
+93000,I10,EKG for hypertension visit,Standard cardiovascular evaluation
+99213,J30.9,Established patient office visit - allergic rhinitis,Low complexity symptom management
+99214,E11.9,Established patient office visit - diabetes,Moderate complexity chronic care
+90471,Z23,Immunization administration,Vaccine encounter
+90686,Z23,Influenza virus vaccine,Vaccination preventive visit

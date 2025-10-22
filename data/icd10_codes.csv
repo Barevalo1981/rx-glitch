@@ -1,3 +1,11 @@
-icd10_codes.csv
-cpt_codes.csv
-payers.csv
+code,description
+I10,Essential (primary) hypertension
+E11.9,Type 2 diabetes mellitus without complications
+E78.5,Hyperlipidemia
+J06.9,Acute upper respiratory infection
+M54.5,Low back pain
+F41.9,Anxiety disorder
+R51.9,Headache
+Z00.00,Encounter for general adult medical examination without abnormal findings
+Z23,Encounter for immunization
+J45.909,Unspecified asthma

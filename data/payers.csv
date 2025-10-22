@@ -1,0 +1,5 @@
+payer_name,plan_id,state,network
+Aetna Health Plan,PAYER-AETNA-001,NJ,PPO
+Kaiser Permanente,PAYER-KAISER-001,CA,HMO
+Blue Cross Blue Shield,PAYER-BCBS-001,PA,PPO
+Cigna Healthcare,PAYER-CIGNA-001,TX,EPO

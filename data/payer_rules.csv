@@ -1,0 +1,13 @@
+payer_id,payer_name
+PAYER-UHC-001,UnitedHealthcare
+PAYER-ELEVANCE-001,Elevance Health (Anthem)
+PAYER-CENTENE-001,Centene Corporation
+PAYER-HUMANA-001,Humana
+PAYER-AETNA-001,Aetna (CVS Health)
+PAYER-KAISER-001,Kaiser Permanente
+PAYER-HCSC-001,Health Care Service Corporation
+PAYER-CIGNA-001,Cigna Health
+PAYER-BCBS-001,Blue Cross Blue Shield
+PAYER-AMERIGROUP-001,Amerigroup
+PAYER-GUIDEWELL-001,GuideWell (Florida Blue)
+PAYER-OSC-001,Oscar Health

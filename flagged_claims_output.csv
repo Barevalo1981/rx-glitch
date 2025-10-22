@@ -1,0 +1,1 @@
+claim_id,patient_id,payer_id,cpt_code,icd10_code,units,charge_amount,auth_number,referring_provider_id,rendering_npi,place_of_service,modifiers,clia_number,dos,notes,approved_combo,is_duplicate,risks,Glitch_Score,denial_codes,prevention_tips
