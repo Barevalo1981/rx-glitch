@@ -2,6 +2,41 @@ from __future__ import annotations
 import json
 from datetime import datetime
 import streamlit as st
+import os
+import streamlit as st
+
+# ==========================================================
+# Password Gate (runs before any UI)
+# ==========================================================
+
+APP_PASSWORD = st.secrets.get("APP_PASSWORD") or os.getenv("APP_PASSWORD")
+
+def check_password():
+    """Returns True if password is correct."""
+
+    # If no password set, do not block (fails open during dev)
+    if not APP_PASSWORD:
+        st.warning("Password gate disabled (no APP_PASSWORD set).")
+        return True
+
+    # If already authenticated this session
+    if st.session_state.get("authenticated", False):
+        return True
+
+    # Ask for password
+    password = st.text_input("Enter demo password:", type="password")
+
+    if password:
+        if password == APP_PASSWORD:
+            st.session_state.authenticated = True
+            return True
+        else:
+            st.error("Incorrect password")
+
+    return False
+
+if not check_password():
+    st.stop()
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Page config + light polish
